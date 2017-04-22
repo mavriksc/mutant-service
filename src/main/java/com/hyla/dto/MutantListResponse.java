@@ -9,10 +9,10 @@ import com.hyla.model.Mutant;
 import lombok.Data;
 
 @Data
-public class MutantResponseList {
+public class MutantListResponse {
     private List<Mutant> data;
 
-    public MutantResponseList(Collection<Mutant> data) {
+    public MutantListResponse(Collection<Mutant> data) {
         super();
         this.data = new ArrayList<Mutant>();
         this.data.addAll(data);

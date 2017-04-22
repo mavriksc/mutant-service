@@ -11,6 +11,7 @@ import com.hyla.dao.DisasterDao;
 import com.hyla.dao.MutantDao;
 import com.hyla.dao.SquadDao;
 import com.hyla.model.Ability;
+import com.hyla.model.Characteristic;
 import com.hyla.model.Disaster;
 import com.hyla.model.Mutant;
 import com.hyla.model.Squad;
@@ -41,6 +42,8 @@ public class MutantServiceApplication {
             }
             if (dDao.count() == 0) {
                 Disaster d = new Disaster("Magneto escaped");
+                d.getCharacteristic().add(new Characteristic("Villian can control metal"));
+                d.getCharacteristic().add(new Characteristic("Villian's helmet blocks telepathy"));
                 dDao.save(d);
             }
             

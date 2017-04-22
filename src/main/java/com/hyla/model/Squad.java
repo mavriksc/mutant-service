@@ -24,6 +24,9 @@ public class Squad {
         super();
         mutants = new HashSet<Mutant>();
     }
-    
+    public void copy(Squad s){
+        this.mutants.clear();
+        this.mutants.addAll(s.getMutants());
+    }
 
 }
