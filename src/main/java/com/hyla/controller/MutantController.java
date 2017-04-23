@@ -13,6 +13,7 @@ import com.hyla.dao.DisasterDao;
 import com.hyla.dao.MutantDao;
 import com.hyla.dao.SquadDao;
 import com.hyla.dto.MutantResponse;
+import com.hyla.dto.DisasterListResponse;
 import com.hyla.dto.DisasterResponse;
 import com.hyla.dto.MutantListResponse;
 import com.hyla.dto.SquadListResponse;
@@ -42,19 +43,19 @@ public class MutantController {
     public MutantResponse getMutant(@PathVariable Long id){
         return new MutantResponse(mDao.findOne(id));
     }
-    @DeleteMapping("/mutants/{id}")
-    public void deleteMutant(@PathVariable Long id){
-       if (mDao.exists(id)) {
-           //TODO  remove from squads
-           mDao.delete(id);
-       }       
-    }
-    @PutMapping("/mutants/{id}")
-    public MutantResponse updateMutant(@PathVariable Long id, @RequestBody Mutant mutant){
-        Mutant m = mDao.findOne(id);
-        m.copy(mutant);
-        return new MutantResponse(mDao.save(m));
-    }
+//    @DeleteMapping("/mutants/{id}")
+//    public void deleteMutant(@PathVariable Long id){
+//       if (mDao.exists(id)) {
+//           //TODO  remove from squads
+//           mDao.delete(id);
+//       }       
+//    }
+//    @PutMapping("/mutants/{id}")
+//    public MutantResponse updateMutant(@PathVariable Long id, @RequestBody Mutant mutant){
+//        Mutant m = mDao.findOne(id);
+//        m.copy(mutant);
+//        return new MutantResponse(mDao.save(m));
+//    }
     
     @GetMapping("/squads")
     public SquadListResponse getSquads(){
@@ -69,18 +70,21 @@ public class MutantController {
     public SquadResponse getSquad(@PathVariable Long id){
         return new SquadResponse(sDao.findOne(id));
     }
-    @DeleteMapping("/squads/{id}")
-    public void deleteSquad(@PathVariable Long id){
-        if (sDao.exists(id)) {
-            sDao.delete(id);
-        }
-    }
-    @PutMapping("/squads/{id}")
-    public SquadResponse updateSquad(@PathVariable Long id, @RequestBody Squad squad){
-        Squad s = sDao.findOne(id);
-        s.copy(squad);
-        return new SquadResponse(sDao.save(s));
-    }
+//    @DeleteMapping("/squads/{id}")
+//    public void deleteSquad(@PathVariable Long id){
+//        if (sDao.exists(id)) {
+//            Squad s = sDao.findOne(id);
+////            s.getMutants().clear();
+////            sDao.save(s);
+//            sDao.delete(s);
+//        }
+//    }
+//    @PutMapping("/squads/{id}")
+//    public SquadResponse updateSquad(@PathVariable Long id, @RequestBody Squad squad){
+//        Squad s = sDao.findOne(id);
+//        s.copy(squad);
+//        return new SquadResponse(sDao.save(s));
+//    }
     @GetMapping("/disasters")
     public DisasterListResponse getDisasters(){
         return new DisasterListResponse(dDao.findAll()); 
@@ -93,16 +97,20 @@ public class MutantController {
     public DisasterResponse getDisaster(@PathVariable Long id){
         return new DisasterResponse(dDao.findOne(id));
     }
-    @DeleteMapping("/disasters/{id}")
-    public void deleteDisaster(){
-        
-    }
-    @PutMapping("/disasters/{id}")
-    public DisasterResponse updateDisaster(@PathVariable Long id, @RequestBody Disaster disaster){
-        Disaster d = dDao.findOne(id);
-        d.copy(disaster);
-        return new DisasterResponse(dDao.save(d));
-    }
+//    @DeleteMapping("/disasters/{id}")
+//    public void deleteDisaster(@PathVariable Long id){
+//        if (dDao.exists(id)) {
+//            Disaster d = dDao.findOne(id);
+//            dDao.delete(d);            
+//        }
+//        
+//    }
+//    @PutMapping("/disasters/{id}")
+//    public DisasterResponse updateDisaster(@PathVariable Long id, @RequestBody Disaster disaster){
+//        Disaster d = dDao.findOne(id);
+//        d.copy(disaster);
+//        return new DisasterResponse(dDao.save(d));
+//    }
     
     public MutantController(MutantDao mDao, SquadDao sDao, DisasterDao dDao){
         this.mDao = mDao;

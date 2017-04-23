@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class DisasterResponse {
-    private Disaster data;
+    private DisasterDTO data;
 
     public DisasterResponse(Disaster data) {
         super();
-        this.data = data;
+        this.data = new DisasterDTO(data);
     }
     
 }

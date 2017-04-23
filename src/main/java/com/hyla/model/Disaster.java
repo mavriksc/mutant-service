@@ -21,7 +21,7 @@ public class Disaster {
     private Long id;
     private String name;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<Characteristic> characteristic;
+    private Set<Characteristic> characteristics;
     @OneToOne
     private Squad squad;
     private DisasterState state;
@@ -30,7 +30,7 @@ public class Disaster {
     public Disaster(String name) {
         super();
         this.name = name;
-        this.characteristic = new HashSet<Characteristic>();
+        this.characteristics = new HashSet<Characteristic>();
         state = DisasterState.INCOMING;
     }
     public Disaster() {
@@ -38,8 +38,8 @@ public class Disaster {
     }
     public void copy(Disaster disaster) {
         this.name= disaster.getName();
-        this.characteristic.clear();
-        this.characteristic.addAll(disaster.getCharacteristic());
+        this.characteristics.clear();
+        this.characteristics.addAll(disaster.getCharacteristics());
         this.state = disaster.getState();
         this.disasterAvoided = disaster.isDisasterAvoided();        
     }

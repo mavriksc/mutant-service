@@ -1,4 +1,4 @@
-package com.hyla.controller;
+package com.hyla.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,12 +10,12 @@ import lombok.Data;
 
 @Data
 public class DisasterListResponse {
-    private List<Disaster> data;
+    private List<DisasterLite> data;
 
     public DisasterListResponse(Collection<Disaster> data) {
         super();
-        this.data = new ArrayList<Disaster>();
-        this.data.addAll(data);
+        this.data = new ArrayList<DisasterLite>();
+        data.forEach(disaster -> this.data.add(new DisasterLite(disaster)));
     }
     
 }
