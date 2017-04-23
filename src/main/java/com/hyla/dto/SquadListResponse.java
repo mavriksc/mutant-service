@@ -10,11 +10,11 @@ import lombok.Data;
 
 @Data
 public class SquadListResponse {
-    private List<Squad> data;
+    private List<SquadDTO> data;
 
     public SquadListResponse(Collection<Squad> data) {
         super();
-        this.data = new ArrayList<Squad>();
-        this.data.addAll(data);
+        this.data = new ArrayList<SquadDTO>();
+        data.forEach(squad -> this.data.add(new SquadDTO(squad)));
     }
 }

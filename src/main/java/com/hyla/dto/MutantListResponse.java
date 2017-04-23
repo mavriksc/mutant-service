@@ -10,12 +10,12 @@ import lombok.Data;
 
 @Data
 public class MutantListResponse {
-    private List<Mutant> data;
+    private List<MutantLite> data;
 
     public MutantListResponse(Collection<Mutant> data) {
         super();
-        this.data = new ArrayList<Mutant>();
-        this.data.addAll(data);
+        this.data = new ArrayList<MutantLite>();
+        data.forEach(mutant -> this.data.add(new MutantLite(mutant)));
     }
     
 

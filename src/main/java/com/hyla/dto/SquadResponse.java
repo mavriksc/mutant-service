@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class SquadResponse {
-    private Squad data;
+    private SquadDTO data;
 
     public SquadResponse(Squad data) {
         super();
-        this.data = data;
+        this.data = new SquadDTO(data);
     }
     
 
