@@ -1,7 +1,5 @@
 package com.hyla;
 
-import java.util.HashSet;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,14 +22,13 @@ public class MutantServiceApplication {
         return strings->{
             if (mDao.count() == 0) {
                 Mutant m = new Mutant("Wolverine");              
-                m.setAbilities(new HashSet<Ability>());
+               
                 m.getAbilities().add(new Ability("Regeneration"));
                 m.getAbilities().add(new Ability("Sense of Smell"));
                 m.getAbilities().add(new Ability("Claws"));
                 m.getAbilities().add(new Ability("Adimantium Clad skeleton"));
                 mDao.save(m);
-                m = new Mutant("Jean Grey");              
-                m.setAbilities(new HashSet<Ability>());
+                m = new Mutant("Jean Grey");             
                 m.getAbilities().add(new Ability("Telepathy"));
                 m.getAbilities().add(new Ability("Telekenesis"));
                 mDao.save(m);                

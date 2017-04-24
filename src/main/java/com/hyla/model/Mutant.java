@@ -1,5 +1,6 @@
 package com.hyla.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.hyla.dto.MutantCURequest;
 
 import lombok.Data;
 
@@ -27,15 +29,16 @@ public class Mutant {
         super();
         this.name = name;
         this.alive = true;
+        this.abilities = new HashSet<Ability>();
     }
 
     public Mutant() {
         super();
     }
     
-    public void copy(Mutant m){
-        this.name=m.getName();
-        this.abilities=m.getAbilities();
-        this.alive = m.isAlive();        
+    public void updateFromRequest(MutantCURequest mutantCUR) {
+        this.name = mutantCUR.getName();
+        this.abilities = mutantCUR.getAbilities();        
+        this.alive = mutantCUR.isAlive();    
     }
 }

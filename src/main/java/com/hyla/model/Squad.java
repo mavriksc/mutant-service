@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.hyla.dto.SquadCURequest;
+
 import lombok.Data;
 
 @Data
@@ -24,9 +26,4 @@ public class Squad {
         super();
         mutants = new HashSet<Mutant>();
     }
-    public void copy(Squad s){
-        this.mutants.clear();
-        this.mutants.addAll(s.getMutants());
-    }
-
 }
