@@ -41,8 +41,8 @@ public class MutantController {
     }   
     @PostMapping("/mutants")
     public MutantResponse createMutant(@RequestBody MutantCURequest mutantCUR){
-        Mutant m = new Mutant();
-        m.updateFromRequest(mutantCUR);
+        Mutant m = new Mutant(mutantCUR.getName());
+        m.setAbilities(mutantCUR.getAbilities());
         m = mDao.save(m);
         return new MutantResponse(m);
     }
