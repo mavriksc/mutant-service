@@ -6,9 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.hyla.dto.SquadCURequest;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
@@ -18,8 +16,7 @@ public class Squad {
     @Id
     @GeneratedValue
     private Long id;
-    //private String name;
-    @OneToMany
+    @ManyToMany
     private Set<Mutant> mutants;
     
     public Squad(){

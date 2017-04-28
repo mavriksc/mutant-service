@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.hyla.model.Characteristic;
 import com.hyla.model.DisasterState;
+import com.hyla.model.Squad;
 
 import lombok.Data;
 
@@ -11,7 +12,7 @@ import lombok.Data;
 public class DisasterCURequest {
     private String name;
     private Set<Characteristic> characteristics;
-    private Long SquadId;
+    private Squad squad;
     private DisasterState state;
     private boolean disasterAvoided;
     

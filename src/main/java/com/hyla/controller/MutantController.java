@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyla.dao.DisasterDao;
 import com.hyla.dao.MutantDao;
 import com.hyla.dao.SquadDao;
 import com.hyla.dto.MutantResponse;
+import com.hyla.dto.MutantSearchResult;
 import com.hyla.dto.MutantCURequest;
 import com.hyla.dto.DisasterCURequest;
 import com.hyla.dto.DisasterListResponse;
@@ -63,6 +65,10 @@ public class MutantController {
         m.updateFromRequest(mutantCUR);
         return new MutantResponse(mDao.save(m));
     }
+    @GetMapping("/mutants/search")
+    public MutantSearchResult searchMutantAbilities(@RequestParam String token){
+        return new MutantSearchResult(mDao.abilitiesDescriptionContains(token));
+    }
     
     @GetMapping("/squads")
     public SquadListResponse getSquads(){
@@ -72,7 +78,7 @@ public class MutantController {
     public SquadResponse createSquad(@RequestBody SquadCURequest squadCUR){
         Squad s = new Squad();
         squadCUR.getMutants().forEach(mutantId -> s.getMutants().add(mDao.findOne(mutantId)));
-        return new SquadResponse(s);
+        return new SquadResponse(sDao.save(s));
     }
     @GetMapping("/squads/{id}")
     public SquadResponse getSquad(@PathVariable Long id){
@@ -122,8 +128,8 @@ public class MutantController {
     @PutMapping("/disasters/{id}")
     public DisasterResponse updateDisaster(@PathVariable Long id, @RequestBody DisasterCURequest disasterCUR){
         Disaster d = dDao.findOne(id);
-        if (disasterCUR.getSquadId()!= null && d.getSquad() == null) {
-            d.setSquad(sDao.findOne(disasterCUR.getSquadId()));
+        if (disasterCUR.getSquad()!= null && d.getSquad() == null) {
+            d.setSquad(sDao.findOne(disasterCUR.getSquad().getId()));
             d.setState(DisasterState.ASSIGNED);
         }
         if (d.getState() == DisasterState.ASSIGNED && disasterCUR.getState() == DisasterState.DEBREIFED) {
